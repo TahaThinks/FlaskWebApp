@@ -1,5 +1,20 @@
 from flask import Flask
 
+def make_bold(endpoint):
+    def bold():
+        return f'<b>{endpoint()}</b>'
+    return bold
+
+def make_emphasis(endpoint):
+    def emphasis():
+        return f'<em>{endpoint()}</em>'
+    return emphasis
+
+def make_underlined(endpoint):
+    def underline():
+        return f'<u>{endpoint()}</u>'
+    return underline
+
 app = Flask(__name__)
 
 
@@ -12,6 +27,9 @@ def hello_world():
 
 
 @app.route("/bye")
+@make_bold
+@make_emphasis
+@make_underlined
 def say_bye():
     return "Bye!"
 
