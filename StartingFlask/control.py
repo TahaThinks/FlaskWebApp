@@ -18,4 +18,4 @@ def greet(name):
 
 # Start the app here instead of the terminal
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
