@@ -13,11 +13,11 @@ def hello_world():
 
 @app.route("/bye")
 def say_bye():
-    return "bye"
+    return "Bye!"
 
-@app.route("/username/<name>")
-def greet(name):
-    return f"Hello {name}!"
+@app.route("/username/<name>/<int:number>")
+def greet(name, number):
+    return f"Hello {name}, you are {number} years old!"
 
 # Start the app here instead of the terminal
 if __name__ == "__main__":
