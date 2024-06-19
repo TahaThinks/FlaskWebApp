@@ -1,7 +1,8 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import requests
 
 app = Flask(__name__)
+
 
 @app.route("/")
 def home():
@@ -11,15 +12,26 @@ def home():
     print(all_blogs)
     return render_template("index.html", data=all_blogs)
 
+
 @app.route('/about')
 def about_page():
     return render_template("about.html")
 
 
-@app.route('/contact')
+@app.route('/contact', methods=["POST", "GET"])
 def contact_page():
-    return render_template("contact.html")
+    if request.method == "GET":
+        return render_template("contact.html")
+    else:
+        return "<h1>Successfully sent your message</h1>"
+
+
+
+# @app.route("/form-entry", methods=["POST", "GET"])
+# def receive_data():
+#     return "<h1>Successfully sent your message</h1>"
 
 
 if __name__ == "__main__":
     app.run(debug=True)
+# // Hello, I am interested in learning more about your services
