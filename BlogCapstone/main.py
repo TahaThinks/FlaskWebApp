@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import requests
+from smtplib import SMTP
 
 app = Flask(__name__)
 
@@ -23,7 +24,8 @@ def contact_page():
     if request.method == "GET":
         return render_template("contact.html")
     else:
-        return "<h1>Successfully sent your message</h1>"
+        data = request.form
+        return f"<h1>Successfully sent your message {data['name']}</h1>"
 
 
 
