@@ -1,10 +1,15 @@
 from flask import Flask, render_template
+import requests
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    blog_url = "https://api.npoint.io/787ffa6facf056891dd7"
+    response = requests.get(url=blog_url)
+    all_blogs = response.json()
+    print(all_blogs)
+    return render_template("index.html", data=all_blogs)
 
 @app.route('/about')
 def about_page():
